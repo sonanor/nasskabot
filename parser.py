@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
+
 '''Фаил отвечающий за парсинг сайт с автомобильными номерами'''
 import requests
 from bs4 import BeautifulSoup
