@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 bot = telebot.TeleBot(os.environ["TOKEN"])
-CHAT_ID = None
+CHAT_ID = 121391577
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
 keyboard1.row('Поменять расписание')
