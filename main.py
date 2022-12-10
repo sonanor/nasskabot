@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 bot = telebot.TeleBot(os.environ["TOKEN"])
+CHAT_ID = None
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, True)
 keyboard1.row('Поменять расписание')
@@ -80,6 +81,7 @@ def start_message(message):
     '''Отправляет приветственное сообщение на команду start'''
 
     bot.send_message(message.chat.id, message_on_start, reply_markup=keyboard1)
+    CHAT_ID = message.chat.id
 
 @bot.message_handler(commands=['restart_bot'])
 def restart_message(message):
@@ -178,8 +180,8 @@ def get_photo_messages(message):
         print(message.chat.id)
         print(os.environ['CHAT_ID'])
 
-@bot.message_handler(content_types=['photo'])
-def worker(message):
+
+def worker():
     while True:
         current_time = datetime.now().strftime('%H:%M')
         with open('user_settings.json', encoding='utf-8') as json_file:
@@ -190,7 +192,7 @@ def worker(message):
                 id = randint(0, 148)
                 with open('user_settings.json', 'w', encoding='utf-8') as outfile:
                     json.dump(data, outfile)
-                bot.send_photo(message.chat.id, id_photo, caption=ARR[id], reply_markup=keyboard1)
+                bot.send_photo(CHAT_ID, id_photo, caption=ARR[id], reply_markup=keyboard1)
             time.sleep(61)
 
 def proc_start(worker):
