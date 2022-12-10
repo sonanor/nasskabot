@@ -81,13 +81,14 @@ def start_message(message):
     '''Отправляет приветственное сообщение на команду start'''
 
     bot.send_message(message.chat.id, message_on_start, reply_markup=keyboard1)
+    global CHAT_ID
+    CHAT_ID = message.chat.id
 
 @bot.message_handler(commands=['restart_bot'])
 def restart_message(message):
     '''Developer mode'''
     os.system("./restart.sh") #FIX_ME ON SERVER
-    global CHAT_ID
-    CHAT_ID = message.chat.id
+
 
 @bot.message_handler(commands=['help'])
 def help_message(message):
