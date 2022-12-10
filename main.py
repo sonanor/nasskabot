@@ -80,6 +80,11 @@ def start_message(message):
 
     bot.send_message(message.chat.id, message_on_start, reply_markup=keyboard1)
 
+@bot.message_handler(commands=['restart_bot'])
+def restart_message(message):
+    '''Developer mode'''
+    os.system("./restart.sh") #FIX_ME ON SERVER
+
 @bot.message_handler(commands=['help'])
 def help_message(message):
     '''Отправляет сообщение c описанием допустимых команд'''
