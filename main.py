@@ -57,7 +57,8 @@ def get_file_name():
             for line in file_ids:
                 photos_id.append(line)
         num_files = len(photos_id)
-        id_photo = photos_id[randint(0, num_files - 1)][0:-1]
+        if num_files > 0:
+            id_photo = photos_id[randint(0, num_files - 1)][0:-1]
     except FileNotFoundError:
         pass
     return id_photo
@@ -183,9 +184,9 @@ def worker():
         if current_time == data['time']:
             id_photo = get_file_name()
             if id_photo is not None:
-                id = randint(0, 147)
-                print(id)
-                print("hhhhfhshjfigifjgijdfi")
+                id = randint(0, 148)
+                with open('user_settings.json', 'w', encoding='utf-8') as outfile:
+                    json.dump(data, outfile)
                 bot.send_photo(int(os.environ['CHAT_ID']), id_photo, caption=ARR[id], reply_markup=keyboard1)
             time.sleep(61)
 
