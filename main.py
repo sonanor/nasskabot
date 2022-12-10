@@ -83,6 +83,7 @@ def start_message(message):
     bot.send_message(message.chat.id, message_on_start, reply_markup=keyboard1)
     global CHAT_ID
     CHAT_ID = message.chat.id
+    print(CHAT_ID)
 
 @bot.message_handler(commands=['restart_bot'])
 def restart_message(message):
