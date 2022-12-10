@@ -120,7 +120,7 @@ def delete_photo(message):
     '''Удаляет фотографию'''
     id_pass = message.text.split(' ')
     try:
-        if message.chat.id:
+        if str(message.chat.id) == os.environ['CHAT_ID']:
             photos_id = get_all_photos()
             try:
                 photos_id.pop(int(id_pass[0]))
@@ -175,7 +175,7 @@ def get_text_messages(message):
 def get_photo_messages(message):
     '''Обрабатывает входящие картинки'''
     photo_id = message.photo[0].file_id
-    if message.chat.id:
+    if str(message.chat.id) == os.environ['CHAT_ID']:
         with open('ids_photo.txt', 'a', encoding="utf-8") as file_ids:
             file_ids.write(photo_id + '\n')
         bot.send_message(message.chat.id, "Фотография успешно загружена", reply_markup=keyboard1)
