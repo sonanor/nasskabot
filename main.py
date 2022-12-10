@@ -81,7 +81,7 @@ def start_message(message):
     '''Отправляет приветственное сообщение на команду start'''
 
     bot.send_message(message.chat.id, message_on_start, reply_markup=keyboard1)
-    nonlocal CHAT_ID
+    global CHAT_ID
     CHAT_ID = message.chat.id
 
 @bot.message_handler(commands=['restart_bot'])
